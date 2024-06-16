@@ -1,5 +1,8 @@
 console.log("Javascript file loaded")
 
+// TODO change event listeners to event delegation
+// TODO add a temp scaling up effect after hover 
+
 let grid_size = 16
 
 const sketch_container = document.querySelector(".sketch-container")

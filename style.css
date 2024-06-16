@@ -29,6 +29,8 @@
 }
 
 .grid-on {
+    transition-duration: 0.25s;
+    scale: 1.2;
     background-color: darkgray;
 }
 
