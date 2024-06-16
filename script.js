@@ -12,6 +12,7 @@ for (i = 0; i < grid_size; i++) {
     for (j = 0; j < grid_size; j++) {
         const grid_element = document.createElement("div")
         grid_element.textContent = `${i}:${j}` // for testing
+        grid_element.classList.add("grid-element")
         grid_row.appendChild(grid_element)
     }
     sketch_container.appendChild(grid_row)
