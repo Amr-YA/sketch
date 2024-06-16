@@ -4,3 +4,17 @@
     border: none;
     box-sizing: border-box;
 }
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+.header-container {
+
+}
+.sketch-container  {
+
+}
+.footer-container {
+
+}
