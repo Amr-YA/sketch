@@ -6,10 +6,31 @@ console.log("Javascript file loaded")
 let grid_size = 16
 
 const sketch_container = document.querySelector(".sketch-container")
+const bt_clear = document.querySelector("#clear")
+const bt_invert = document.querySelector("#invert")
 
 function changeColor(event) {
-    console.log(this)
     this.classList.add("grid-on")
+}
+
+function clearGrid(event) {
+    const rows = sketch_container.childNodes
+
+    rows.forEach((row) => {
+        row.childNodes.forEach((element) => {
+            element.classList.remove("grid-on")
+        })
+    })
+}
+
+function invertGrid(event) {
+    const rows = sketch_container.childNodes
+
+    rows.forEach((row) => {
+        row.childNodes.forEach((element) => {
+            element.classList.toggle("grid-on")
+        })
+    })
 }
 
 for (i = 0; i < grid_size; i++) {
@@ -24,3 +45,6 @@ for (i = 0; i < grid_size; i++) {
     }
     sketch_container.appendChild(grid_row)
 }
+
+bt_clear.addEventListener('click', clearGrid)
+bt_invert.addEventListener('click', invertGrid)
