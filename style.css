@@ -28,6 +28,9 @@
     border: 1px solid grey;
 }
 
+.grid-on {
+    background-color: darkgray;
+}
 
 /* .header-container {
 
