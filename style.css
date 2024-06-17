@@ -14,18 +14,20 @@
     display: flex;
     flex-direction: column;
     border: 3px solid black;
-    width: fit-content;
+    width: 960px;
+    height: 960px;
     margin: 24px 12px 24px;
 }
 
 .grid-row {
     display: flex;
     flex-direction: row;
+    flex: 1 1 auto;
 }
 .grid-element {
-    height: 30px;
-    width: 30px;
+    display: flex;
     border: 1px solid grey;
+    flex: 1 1 auto;
 }
 
 .grid-on {
@@ -34,6 +36,31 @@
     background-color: darkgray;
 }
 
+.slidecontainer {
+    display: flex;
+    flex-direction: row;
+    margin: 24px 12px 0px;
+    gap: 24px;
+    font-size: 14px;
+    align-items: center;
+}
+.slider {
+    width: 140px;
+    height: 10px;
+    background: lightgray;
+    opacity: 0.7;
+}
+.slider:hover {
+    opacity: 1;
+    transition: opacity .2s;
+}
+
+.slider::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    background: darkcyan;
+    cursor: pointer;
+}
 /* .header-container {
 
 }
