@@ -15,6 +15,7 @@ function activateGridElement(event) {
 }
 
 function deactivateGridElement(event) {
+    console.log(event)
     this.classList.remove("grid-hover")
 }
 
@@ -56,7 +57,6 @@ function buildGridElements(grid_size) {
 
 function getGridSize(event) {
     grid_size = range_selector.value;
-    console.log(grid_size)
     current_size.textContent = `${grid_size} x ${grid_size}`;
     return grid_size
 }
