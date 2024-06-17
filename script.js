@@ -1,7 +1,7 @@
 console.log("Javascript file loaded")
 
 // TODO change event listeners to event delegation
-// TODO add a temp scaling up effect after hover 
+// BUG sometimes the hover effect lingers after the timeout (check again after delegation)
 
 const sketch_container = document.querySelector(".sketch-container")
 const bt_clear = document.querySelector("#clear")
@@ -15,8 +15,10 @@ function activateGridElement(event) {
 }
 
 function deactivateGridElement(event) {
-    console.log(event)
-    this.classList.remove("grid-hover")
+    if (event.propertyName == "transform") {
+        console.log(event);
+        this.classList.remove("grid-hover");
+    }
 }
 
 function clearGrid(event) {
@@ -24,7 +26,8 @@ function clearGrid(event) {
 
     rows.forEach((row) => {
         row.childNodes.forEach((element) => {
-            element.classList.remove("grid-on")
+            element.classList.remove("grid-on");
+            element.classList.remove("grid-hover");
         })
     })
 }
