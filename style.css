@@ -27,13 +27,20 @@
 .grid-element {
     display: flex;
     border: 1px solid grey;
+    border-radius: 4px;
     flex: 1 1 auto;
+    transition-duration: 0.2s;
 }
 
 .grid-on {
-    transition-duration: 0.25s;
+    background-color: rgb(84, 84, 84);
+}
+
+.grid-hover {
     scale: 1.2;
-    background-color: darkgray;
+    border-color: cyan;
+    background-color: rgb(41, 41, 41);
+
 }
 
 .slidecontainer {

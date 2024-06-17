@@ -9,8 +9,13 @@ const bt_invert = document.querySelector("#invert")
 const range_selector = document.querySelector("#myRange")
 const current_size = document.querySelector("#current-size")
 
-function changeColor(event) {
+function activateGridElement(event) {
     this.classList.add("grid-on")
+    this.classList.add("grid-hover")
+}
+
+function deactivateGridElement(event) {
+    this.classList.remove("grid-hover")
 }
 
 function clearGrid(event) {
@@ -41,7 +46,8 @@ function buildGridElements(grid_size) {
         for (j = 0; j < grid_size; j++) {
             const grid_element = document.createElement("div")
             grid_element.classList.add("grid-element")
-            grid_element.addEventListener('mouseover', changeColor)
+            grid_element.addEventListener('mouseover', activateGridElement)
+            grid_element.addEventListener('transitionend', deactivateGridElement)
             grid_row.appendChild(grid_element)
         }
         sketch_container.appendChild(grid_row)
