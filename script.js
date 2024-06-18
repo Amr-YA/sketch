@@ -5,72 +5,95 @@ console.log("Javascript file loaded")
 
 const sketch_container = document.querySelector(".sketch-container")
 const bt_clear = document.querySelector("#clear")
-const bt_invert = document.querySelector("#invert")
 const range_selector = document.querySelector("#myRange")
 const current_size = document.querySelector("#current-size")
+const radioButtons = document.querySelectorAll('input[name="colorize"]');
 
-function activateGridElement(event) {
-    this.classList.add("grid-on")
-    this.classList.add("grid-hover")
+
+// generate random color for randomized option
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
 }
 
+// callback for hovering
+function activateGridElement(event) {
+    this.classList.add("grid-hover")
+    switch (currentColorState) {
+        case "colorize":
+            this.style["background-color"] = getRandomColor();
+            this.style["opacity"] = 1;
+            break;
+        case "darken":
+            this.style["background-color"] = "black";
+            const currentOpacity = Number(this.style["opacity"])
+            this.style["opacity"] = currentOpacity >= 1 ? 1 : Number(this.style["opacity"]) + 0.1;
+            break;
+        case "normal":
+            this.style["background-color"] = "black";
+            this.style["opacity"] = 0.7;
+            break;
+    }
+
+}
+
+// callback for transition end
 function deactivateGridElement(event) {
     if (event.propertyName == "transform") {
-        console.log(event);
         this.classList.remove("grid-hover");
     }
 }
 
-function clearGrid(event) {
-    const rows = sketch_container.childNodes
-
-    rows.forEach((row) => {
-        row.childNodes.forEach((element) => {
-            element.classList.remove("grid-on");
-            element.classList.remove("grid-hover");
-        })
-    })
-}
-
-function invertGrid(event) {
-    const rows = sketch_container.childNodes
-
-    rows.forEach((row) => {
-        row.childNodes.forEach((element) => {
-            element.classList.toggle("grid-on")
-        })
-    })
-}
-
-function buildGridElements(grid_size) {
+// reset grid, then add new grid rows, then add boxes in each row
+function buildGridRows(grid_size) {
     sketch_container.innerHTML = '';
     for (i = 0; i < grid_size; i++) {
         const grid_row = document.createElement("div")
         grid_row.classList.add("grid-row")
         for (j = 0; j < grid_size; j++) {
-            const grid_element = document.createElement("div")
-            grid_element.classList.add("grid-element")
-            grid_element.addEventListener('mouseover', activateGridElement)
-            grid_element.addEventListener('transitionend', deactivateGridElement)
-            grid_row.appendChild(grid_element)
+            grid_row.appendChild(buildSingleBox())
         }
         sketch_container.appendChild(grid_row)
     }
 }
 
+// build single box in grid, then add listeners
+function buildSingleBox() {
+    const grid_element = document.createElement("div")
+    grid_element.classList.add("grid-element")
+    grid_element.addEventListener('mouseover', activateGridElement)
+    grid_element.addEventListener('transitionend', deactivateGridElement)
+    return grid_element
+}
+
+// get grid size from slider
 function getGridSize(event) {
     grid_size = range_selector.value;
     current_size.textContent = `${grid_size} x ${grid_size}`;
     return grid_size
 }
 
+// build grid after getting selected grid size
 function buildGridReactivaly() {
     grid_size = getGridSize();
-    buildGridElements(grid_size)
+    buildGridRows(grid_size)
 }
 
-bt_clear.addEventListener('click', clearGrid);
-bt_invert.addEventListener('click', invertGrid);
+bt_clear.addEventListener('click', buildGridReactivaly);
 range_selector.addEventListener('input', buildGridReactivaly);
+
+
+let currentColorState = 'normal';
+
+for (const radioButton of radioButtons) {
+    radioButton.addEventListener('change', (e) => {currentColorState = e.target.value});
+    if (radioButton.value == "normal") {
+        radioButton.checked = true;
+    }
+}
 
 buildGridReactivaly()

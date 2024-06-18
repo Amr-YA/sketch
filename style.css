@@ -14,8 +14,8 @@
     display: flex;
     flex-direction: column;
     border: 3px solid black;
-    width: 540px;
-    height: 540px;
+    width: 460px;
+    height: 460px;
     margin: 24px 12px 24px;
 }
 
@@ -26,21 +26,17 @@
 }
 .grid-element {
     display: flex;
-    border: 1px solid grey;
+    border: 1px solid #808080;
     border-radius: 4px;
     flex: 1 1 auto;
-    transition-duration: 0.2s;
-}
-
-.grid-on {
-    background-color: rgb(84, 84, 84);
+    transition-duration: 0.1s;
 }
 
 .grid-hover {
     transform: scale(1.3);
     border-color: cyan;
-    background-color: rgb(41, 41, 41);
-
+    background-color: rgb(41, 41, 41) !important;
+    opacity: 1 !important;
 }
 
 .slidecontainer {

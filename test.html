@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Random Background Color on Hover</title>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      margin: 20px;
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+
+  <script>
+    // Get all the box elements
+    const boxes = document.querySelectorAll('.box');
+
+    // Function to generate a random hex color
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    // Add event listener to each box
+    boxes.forEach(box => {
+      box.addEventListener('mouseenter', () => {
+        box.style.backgroundColor = getRandomColor();
+      });
+    });
+  </script>
+</body>
+
+</html>
