@@ -7,28 +7,29 @@
   <script src="./script.js" defer></script>
   <link rel="stylesheet" href="./style.css">
 </head>
-<body class="container">
-  <div class="header-container">
-    <h1>Etch a Sketch</h1>
-    <h2>Sketch Here</h2>
-    <div class="slidecontainer">
-      <label for="grid-size0-range">Select grid size (10 to 50)</label>
-      <input type="range" name="grid-size0-range" min="10" max="50" value="10" class="slider" id="myRange">
-      <p id="current-size">20</p>
-      <button id="clear">Clear</button>
+<body>
+  <div class="container">
+    <div class="header-container">
+      <h1>Etch a Sketch</h1>
+      <div class="slidecontainer">
+        <label for="grid-size0-range">Select grid size (10 to 36)</label>
+        <input type="range" name="grid-size0-range" min="10" max="36" value="24" class="slider" id="myRange">
+        <p id="current-size">20</p>
+      </div>
     </div>
-  </div>
-  <div class="sketch-container" id="sketch">
-  </div>
-  <div class="footer-container">
-    <div class="options">
-      <p>Select option for grid colorization</p>
-      <input type="radio" name="colorize" value="normal" class="radio" id="normalRadio" checked>
-      <label for="normal">Normal</label>
-      <input type="radio" name="colorize" value="darken" class="radio" id="darkenRadio">
-      <label for="darken">Darken</label>
-      <input type="radio" name="colorize" value="colorize" class="radio" id="colorizRadio">
-      <label for="random">Random</label>
+    <div class="sketch-container" id="sketch">
+    </div>
+    <div class="footer-container">
+      <div class="options">
+        <p>Select option for grid colorization</p>
+        <input type="radio" name="colorize" value="normal" class="radio" id="normalRadio" checked>
+        <label for="normal">Normal</label>
+        <input type="radio" name="colorize" value="darken" class="radio" id="darkenRadio">
+        <label for="darken">Darken</label>
+        <input type="radio" name="colorize" value="colorize" class="radio" id="colorizRadio">
+        <label for="random">Random</label>
+      </div>
+      <button id="clear">Clear</button>
     </div>
   </div>
 </body>

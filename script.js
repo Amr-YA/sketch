@@ -29,13 +29,14 @@ function activateGridElement(event) {
             this.style["opacity"] = 1;
             break;
         case "darken":
-            this.style["background-color"] = "black";
+            // reverese effect to work with background color of the container and get the effect of circular dots
+            this.style["background-color"] = "white";
             const currentOpacity = Number(this.style["opacity"])
-            this.style["opacity"] = currentOpacity >= 1 ? 1 : Number(this.style["opacity"]) + 0.1;
+            this.style["opacity"] = currentOpacity <= 0 ? 0 : Number(this.style["opacity"]) - 0.1;
             break;
         case "normal":
-            this.style["background-color"] = "black";
-            this.style["opacity"] = 0.7;
+            this.style["background-color"] = "white";
+            this.style["opacity"] = 0.3;
             break;
     }
 
@@ -67,6 +68,7 @@ function buildSingleBox() {
     grid_element.classList.add("grid-element")
     grid_element.addEventListener('mouseover', activateGridElement)
     grid_element.addEventListener('transitionend', deactivateGridElement)
+    grid_element.style["opacity"] = 1;
     return grid_element
 }
 
